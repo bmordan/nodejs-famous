@@ -10,12 +10,14 @@ define(function(require, exports, module) {
     var Surface = require('famous/core/Surface')
     var ImageSurface = require('famous/surfaces/ImageSurface')
     var TouchSync = require('famous/inputs/TouchSync')
-    // create socket
     
+    // create socket
+    var Client = require('client')
+    // setup
     var mainContext = Engine.createContext()
     var sync = new TouchSync()
     var position = [0,0]
-    
+    // helper functions
     function _createBrick(){
       var brick = new View()
       var brickMod = new Modifier({
@@ -29,7 +31,7 @@ define(function(require, exports, module) {
         size: [200,200],
         content: 'content/images/2.png'
       })
-      //events
+      // events
       brickSurface.pipe(sync)
       sync.on('update', function(data){
         position[0] += data.delta[0]
@@ -40,7 +42,7 @@ define(function(require, exports, module) {
         if(position[0] < min) position[0] = min+75
         if(position[0] > max) position[0] = max-75
       })
-      //render
+      // add to the render tree
       brick.add(brickMod).add(brickSurface)
       mainContext.add(brick)
     }
