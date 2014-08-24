@@ -9,4 +9,4 @@ require.config({
         almond: '../lib/almond/almond'
     }
 });
-require(['main'],['socket'],['client'])
+require(['main'],['client'])

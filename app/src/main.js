@@ -10,7 +10,6 @@ define(function(require, exports, module) {
     var Surface = require('famous/core/Surface')
     var ImageSurface = require('famous/surfaces/ImageSurface')
     var TouchSync = require('famous/inputs/TouchSync')
-    
     // create socket
     var Client = require('client')
     // setup
