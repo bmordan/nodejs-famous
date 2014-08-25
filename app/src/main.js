@@ -11,8 +11,11 @@ define(function(require, exports, module) {
     var ImageSurface = require('famous/surfaces/ImageSurface')
     var TouchSync = require('famous/inputs/TouchSync')
     // create socket
+
     var Client = require('client')
+    Client('boo')
     // setup
+    
     var mainContext = Engine.createContext()
     var sync = new TouchSync()
     var position = [0,0]
@@ -34,6 +37,7 @@ define(function(require, exports, module) {
       brickSurface.pipe(sync)
       sync.on('update', function(data){
         position[0] += data.delta[0]
+        console.log(position[0])
       })
       sync.on('end', function(data){ 
         var min = 0 - mainContext.getSize()[0]/2
