@@ -14,6 +14,7 @@ define(function(require, exports, module) {
 
     var Client = require('client')
     Client('boo')
+    
     // setup
     
     var mainContext = Engine.createContext()
