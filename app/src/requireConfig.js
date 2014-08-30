@@ -7,7 +7,8 @@ require.config({
         famous: '../lib/famous',
         requirejs: '../lib/requirejs/require',
         almond: '../lib/almond/almond',
-        dgram: '../lib/dgram/dgram.min'
+        dgram: '../lib/dgram/dgram.min',
+        sockjs: '../lib/sockjs/sockjs'
     },
     packages: [
 

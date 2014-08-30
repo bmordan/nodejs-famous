@@ -2,6 +2,7 @@
 define(function(require, exports, module) {
     'use strict';
     // import dependencies
+    var SockJS = require('sockjs')
     var Engine = require('famous/core/Engine')
     var View = require('famous/core/View')
     var Modifier = require('famous/core/Modifier')
@@ -10,15 +11,30 @@ define(function(require, exports, module) {
     var Surface = require('famous/core/Surface')
     var ImageSurface = require('famous/surfaces/ImageSurface')
     var TouchSync = require('famous/inputs/TouchSync')
+    var MouseSync = require('famous/inputs/MouseSync')
+    var GenericSync = require('famous/inputs/GenericSync')
+    GenericSync.register({
+      "mouse" : MouseSync,
+      "touch" : TouchSync
+    })
     // create socket
-
-    var Client = require('client')
-    Client('boo')
-    
+    var sock = new SockJS('http://192.168.1.10:9000/echo')
+    sock.onopen = function() {
+        console.log('open')
+    }
+    sock.onmessage = function(e) {
+        console.log('message', e.data)
+    }
+    sock.onclose = function() {
+        console.log('close')
+    }
     // setup
     
     var mainContext = Engine.createContext()
-    var sync = new TouchSync()
+    var sync = new GenericSync({
+      "mouse" : {},
+      "touch" : {}
+    })
     var position = [0,0]
     // helper functions
     function _createBrick(){
